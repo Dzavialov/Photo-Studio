@@ -1,0 +1,14 @@
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\bin\Debug\net7.0\PhotoStudio.Domain.deps.json
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\bin\Debug\net7.0\PhotoStudio.Domain.runtimeconfig.json
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\bin\Debug\net7.0\PhotoStudio.Domain.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\bin\Debug\net7.0\PhotoStudio.Domain.pdb
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\PhotoStudio.Domain.csproj.AssemblyReference.cache
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\PhotoStudio.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\PhotoStudio.Domain.AssemblyInfoInputs.cache
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\PhotoStudio.Domain.AssemblyInfo.cs
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\PhotoStudio.Domain.csproj.CoreCompileInputs.cache
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\PhotoStudio.Domain.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\refint\PhotoStudio.Domain.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\PhotoStudio.Domain.pdb
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\PhotoStudio.Domain.genruntimeconfig.cache
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\ref\PhotoStudio.Domain.dll
