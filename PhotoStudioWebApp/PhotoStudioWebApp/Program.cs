@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
 using PhotoStudio.Domain;
+using PhotoStudio.Domain.Helper;
 using System.Text;
 
 namespace PhotoStudioWebApp
@@ -18,12 +20,10 @@ namespace PhotoStudioWebApp
 
             builder.Services.AddControllersWithViews();
 
-            //builder.Services.Configure<DbContextOptions<AuthorizationDbContext>>(configuration.GetConnectionString("ConnStr"));
-
-
             // For Entity Framework
             builder.Services.AddDbContext<AuthorizationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ConnStr")));
 
+            
             // For Identity
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AuthorizationDbContext>()
@@ -56,7 +56,13 @@ namespace PhotoStudioWebApp
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
+           
+            
+
             var app = builder.Build();
+
+            
+           
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

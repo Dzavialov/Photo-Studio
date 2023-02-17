@@ -1,0 +1,12 @@
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\bin\Debug\net6.0\PhotoStudio.Core.deps.json
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\bin\Debug\net6.0\PhotoStudio.Core.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\bin\Debug\net6.0\PhotoStudio.Core.pdb
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\obj\Debug\net6.0\PhotoStudio.Core.csproj.AssemblyReference.cache
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\obj\Debug\net6.0\PhotoStudio.Core.GeneratedMSBuildEditorConfig.editorconfig
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\obj\Debug\net6.0\PhotoStudio.Core.AssemblyInfoInputs.cache
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\obj\Debug\net6.0\PhotoStudio.Core.AssemblyInfo.cs
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\obj\Debug\net6.0\PhotoStudio.Core.csproj.CoreCompileInputs.cache
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\obj\Debug\net6.0\PhotoStudio.Core.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\obj\Debug\net6.0\refint\PhotoStudio.Core.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\obj\Debug\net6.0\PhotoStudio.Core.pdb
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Core\obj\Debug\net6.0\ref\PhotoStudio.Core.dll

@@ -1233,6 +1233,16 @@
             "rid": "win"
           }
         }
+      },
+      "PhotoStudio.Core/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v6.0",
+        "compile": {
+          "bin/placeholder/PhotoStudio.Core.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/PhotoStudio.Core.dll": {}
+        }
       }
     }
   },
@@ -3659,6 +3669,11 @@
         "useSharedDesignerContext.txt",
         "version.txt"
       ]
+    },
+    "PhotoStudio.Core/1.0.0": {
+      "type": "project",
+      "path": "../PhotoStudio.Core/PhotoStudio.Core.csproj",
+      "msbuildProject": "../PhotoStudio.Core/PhotoStudio.Core.csproj"
     }
   },
   "projectFileDependencyGroups": {
@@ -3666,7 +3681,8 @@
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 7.0.3",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 7.0.3",
       "Microsoft.EntityFrameworkCore.SqlServer >= 7.0.3",
-      "Microsoft.EntityFrameworkCore.Tools >= 7.0.3"
+      "Microsoft.EntityFrameworkCore.Tools >= 7.0.3",
+      "PhotoStudio.Core >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -3695,7 +3711,11 @@
       "frameworks": {
         "net7.0": {
           "targetAlias": "net7.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "C:\\CSharp\\Photo-Studio\\PhotoStudioWebApp\\PhotoStudio.Core\\PhotoStudio.Core.csproj": {
+              "projectPath": "C:\\CSharp\\Photo-Studio\\PhotoStudioWebApp\\PhotoStudio.Core\\PhotoStudio.Core.csproj"
+            }
+          }
         }
       },
       "warningProperties": {

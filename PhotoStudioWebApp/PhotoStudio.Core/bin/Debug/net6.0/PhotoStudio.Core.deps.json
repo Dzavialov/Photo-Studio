@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "PhotoStudio.Core/1.0.0": {
+        "runtime": {
+          "PhotoStudio.Core.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "PhotoStudio.Core/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

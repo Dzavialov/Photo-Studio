@@ -47,6 +47,14 @@ namespace PhotoStudio.Domain.Migrations
                         .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "725453E0-3BD1-4CDA-B6A4-F4A683B987ED",
+                            Name = "Admin",
+                            NormalizedName = "Admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -137,6 +145,24 @@ namespace PhotoStudio.Domain.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "319db23f-ef17-4e9e-9146-d276aa72d6c4",
+                            Email = "admin@admin.com",
+                            EmailConfirmed = true,
+                            LockoutEnabled = false,
+                            NormalizedEmail = "admin@admin.com",
+                            NormalizedUserName = "admin",
+                            PasswordHash = "AQAAAAIAAYagAAAAENMMOiW54SzuIPzbVXLysHb+Wu1MqUwTF+5ek3H+H8K6R402AP+0wpXRpWAQ8bM+uQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "",
+                            TwoFactorEnabled = false,
+                            UserName = "admin"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -199,6 +225,13 @@ namespace PhotoStudio.Domain.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetUserRoles", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
+                            RoleId = "725453E0-3BD1-4CDA-B6A4-F4A683B987ED"
+                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
@@ -240,7 +273,8 @@ namespace PhotoStudio.Domain.Migrations
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<Guid>("RoomId")
                         .HasColumnType("uniqueidentifier");
@@ -252,7 +286,7 @@ namespace PhotoStudio.Domain.Migrations
                     b.ToTable("EquipmentItems");
                 });
 
-            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.Rooms", b =>
+            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.Room", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -262,16 +296,34 @@ namespace PhotoStudio.Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("BookingTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.RoomBooking", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("BookFrom")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("BookTo")
+                        .HasColumnType("datetime2");
+
+                    b.Property<Guid>("RoomId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -279,9 +331,11 @@ namespace PhotoStudio.Domain.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("RoomId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("Rooms");
+                    b.ToTable("RoomBookings");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -337,7 +391,7 @@ namespace PhotoStudio.Domain.Migrations
 
             modelBuilder.Entity("PhotoStudio.Domain.EntityModels.EquipmentItem", b =>
                 {
-                    b.HasOne("PhotoStudio.Domain.EntityModels.Rooms", "Room")
+                    b.HasOne("PhotoStudio.Domain.EntityModels.Room", "Room")
                         .WithMany("EquipmentItems")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -346,20 +400,30 @@ namespace PhotoStudio.Domain.Migrations
                     b.Navigation("Room");
                 });
 
-            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.Rooms", b =>
+            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.RoomBooking", b =>
                 {
+                    b.HasOne("PhotoStudio.Domain.EntityModels.Room", "Room")
+                        .WithMany("RoomBooking")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Room");
+
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.Rooms", b =>
+            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.Room", b =>
                 {
                     b.Navigation("EquipmentItems");
+
+                    b.Navigation("RoomBooking");
                 });
 #pragma warning restore 612, 618
         }

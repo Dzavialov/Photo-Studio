@@ -12,3 +12,6 @@ C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\ref
 C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\PhotoStudio.Domain.pdb
 C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\PhotoStudio.Domain.genruntimeconfig.cache
 C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\ref\PhotoStudio.Domain.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\bin\Debug\net7.0\PhotoStudio.Core.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\bin\Debug\net7.0\PhotoStudio.Core.pdb
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Domain\obj\Debug\net7.0\PhotoStudio.Domain.csproj.CopyComplete
