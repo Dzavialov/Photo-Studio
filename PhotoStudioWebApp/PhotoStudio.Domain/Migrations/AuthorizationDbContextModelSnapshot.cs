@@ -151,13 +151,13 @@ namespace PhotoStudio.Domain.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "319db23f-ef17-4e9e-9146-d276aa72d6c4",
+                            ConcurrencyStamp = "187270aa-6d1d-49fb-81c9-a5fd86550aee",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@admin.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAIAAYagAAAAENMMOiW54SzuIPzbVXLysHb+Wu1MqUwTF+5ek3H+H8K6R402AP+0wpXRpWAQ8bM+uQ==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEMJL5pMiaYCkdFFWKLWD7gi7xEQwE2CLMwJ3Jih27GY373ESFVukUY20g11icZEKog==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -253,64 +253,7 @@ namespace PhotoStudio.Domain.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.EquipmentItem", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AdditionalInformation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<Guid>("RoomId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("RoomId");
-
-                    b.ToTable("EquipmentItems");
-                });
-
-            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.Room", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("AdditionalInformation")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Description")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Rooms");
-                });
-
-            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.RoomBooking", b =>
+            modelBuilder.Entity("PhotoStudio.Domain.Entities.Booking", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -335,7 +278,63 @@ namespace PhotoStudio.Domain.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("RoomBookings");
+                    b.ToTable("Bookings");
+                });
+
+            modelBuilder.Entity("PhotoStudio.Domain.Entities.EquipmentItem", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AdditionalInformation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("EquipmentItems");
+                });
+
+            modelBuilder.Entity("PhotoStudio.Domain.Entities.Room", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AdditionalInformation")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Image")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Rooms");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -389,21 +388,10 @@ namespace PhotoStudio.Domain.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.EquipmentItem", b =>
+            modelBuilder.Entity("PhotoStudio.Domain.Entities.Booking", b =>
                 {
-                    b.HasOne("PhotoStudio.Domain.EntityModels.Room", "Room")
-                        .WithMany("EquipmentItems")
-                        .HasForeignKey("RoomId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Room");
-                });
-
-            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.RoomBooking", b =>
-                {
-                    b.HasOne("PhotoStudio.Domain.EntityModels.Room", "Room")
-                        .WithMany("RoomBooking")
+                    b.HasOne("PhotoStudio.Domain.Entities.Room", "Room")
+                        .WithMany("Booking")
                         .HasForeignKey("RoomId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -419,11 +407,9 @@ namespace PhotoStudio.Domain.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("PhotoStudio.Domain.EntityModels.Room", b =>
+            modelBuilder.Entity("PhotoStudio.Domain.Entities.Room", b =>
                 {
-                    b.Navigation("EquipmentItems");
-
-                    b.Navigation("RoomBooking");
+                    b.Navigation("Booking");
                 });
 #pragma warning restore 612, 618
         }

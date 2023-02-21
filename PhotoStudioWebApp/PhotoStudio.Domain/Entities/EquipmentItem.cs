@@ -1,6 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
-namespace PhotoStudio.Domain.EntityModels
+namespace PhotoStudio.Domain.Entities
 {
     public class EquipmentItem
     {
@@ -10,7 +11,5 @@ namespace PhotoStudio.Domain.EntityModels
         public string Description { get; set; }
         public string AdditionalInformation { get; set; }
         public string Image { get; set; }
-        public Guid RoomId { get; set; }
-        public Room Room { get; set; }
     }
 }

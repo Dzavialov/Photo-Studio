@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using PhotoStudio.Application.Mappings;
 using PhotoStudio.Domain;
-using PhotoStudio.Domain.Helper;
 using System.Text;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using System.Text.Json;
 
 namespace PhotoStudioWebApp
 {
@@ -19,15 +22,17 @@ namespace PhotoStudioWebApp
             // Add services to the container.
 
             builder.Services.AddControllersWithViews();
+            builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
 
             // For Entity Framework
             builder.Services.AddDbContext<AuthorizationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ConnStr")));
 
-            
             // For Identity
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<AuthorizationDbContext>()
                 .AddDefaultTokenProviders();
+
+            
 
             // Adding Authentication
             builder.Services.AddAuthentication(options =>
@@ -56,13 +61,10 @@ namespace PhotoStudioWebApp
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
-           
             
+
 
             var app = builder.Build();
-
-            
-           
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())

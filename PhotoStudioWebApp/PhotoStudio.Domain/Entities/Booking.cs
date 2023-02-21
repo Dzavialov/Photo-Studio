@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PhotoStudio.Domain.EntityModels
+namespace PhotoStudio.Domain.Entities
 {
-    public class RoomBooking
+    public class Booking
     {
         public Guid Id { get; set; }
         public DateTime BookFrom { get; set; }

@@ -1,21 +1,19 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using PhotoStudio.Domain.EntityModels;
-using PhotoStudio.Domain.Helper;
+using Microsoft.Extensions.Configuration;
+using PhotoStudio.Domain.Entities;
 
 namespace PhotoStudio.Domain
 {
     public class AuthorizationDbContext : IdentityDbContext<IdentityUser>
     {
-        
-
         public DbSet<EquipmentItem> EquipmentItems { get; set; }
-        public DbSet<Room> Rooms { get; set; }        
-        public DbSet<RoomBooking> RoomBookings { get; set; }
+        public DbSet<Room> Rooms { get; set; }
+        public DbSet<Booking> Bookings { get; set; }
         public AuthorizationDbContext(DbContextOptions<AuthorizationDbContext> options) : base(options)
         {
-            
+
         }
         public AuthorizationDbContext()
         {
@@ -26,6 +24,15 @@ namespace PhotoStudio.Domain
 #if DEBUG
             optionsBuilder.EnableSensitiveDataLogging();
 #endif
+            if (!optionsBuilder.IsConfigured)
+            {
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                   .SetBasePath(Directory.GetCurrentDirectory())
+                   .AddJsonFile("appsettings.json")
+                   .Build();
+                var connectionString = configuration.GetConnectionString("ConnStr");
+                optionsBuilder.UseSqlServer(connectionString);
+            }
             base.OnConfiguring(optionsBuilder);
         }
 
