@@ -17,8 +17,4 @@
     </PackageReference>
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\PhotoStudio.Core\PhotoStudio.Core.csproj" />
-  </ItemGroup>
-
 </Project>

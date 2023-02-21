@@ -1,14 +1,16 @@
+using FluentValidation;
+using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.IdentityModel.Tokens;
+using PhotoStudio.Application.DTOs;
 using PhotoStudio.Application.Mappings;
+using PhotoStudio.Application.Validation;
 using PhotoStudio.Domain;
+using PhotoStudio.Domain.Entities;
 using System.Text;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
-using System.Text.Json;
 
 namespace PhotoStudioWebApp
 {
@@ -23,9 +25,17 @@ namespace PhotoStudioWebApp
 
             builder.Services.AddControllersWithViews();
             builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
+            builder.Services.AddFluentValidationClientsideAdapters();
 
             // For Entity Framework
             builder.Services.AddDbContext<AuthorizationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ConnStr")));
+
+            //Adding validation dependencies
+            builder.Services.AddScoped<IValidator<RoomDto>, RoomDtoValidation>();
+            builder.Services.AddScoped<IValidator<BookingDto>, BookingDtoValidation>();
+            builder.Services.AddScoped<IValidator<EquipmentItemDto>, EquipmentItemDtoValidation>();
+            //builder.Services.AddScoped<IValidator<RegisterDto>, RegisterDtoValidation>();
+            //builder.Services.AddScoped<IValidator<LoginDto>, LoginDtoValidation>();
 
             // For Identity
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()

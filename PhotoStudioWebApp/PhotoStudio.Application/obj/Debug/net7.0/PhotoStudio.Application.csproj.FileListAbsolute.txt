@@ -1,10 +1,8 @@
 C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Application\bin\Debug\net7.0\PhotoStudio.Application.deps.json
 C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Application\bin\Debug\net7.0\PhotoStudio.Application.dll
 C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Application\bin\Debug\net7.0\PhotoStudio.Application.pdb
-C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Application\bin\Debug\net7.0\PhotoStudio.Core.dll
 C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Application\bin\Debug\net7.0\PhotoStudio.Domain.dll
 C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Application\bin\Debug\net7.0\PhotoStudio.Domain.pdb
-C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Application\bin\Debug\net7.0\PhotoStudio.Core.pdb
 C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Application\obj\Debug\net7.0\PhotoStudio.Application.csproj.AssemblyReference.cache
 C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Application\obj\Debug\net7.0\PhotoStudio.Application.GeneratedMSBuildEditorConfig.editorconfig
 C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Application\obj\Debug\net7.0\PhotoStudio.Application.AssemblyInfoInputs.cache

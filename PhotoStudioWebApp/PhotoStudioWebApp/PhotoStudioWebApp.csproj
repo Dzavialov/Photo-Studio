@@ -36,7 +36,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PhotoStudio.Application\PhotoStudio.Application.csproj" />
-    <ProjectReference Include="..\PhotoStudio.Core\PhotoStudio.Core.csproj" />
     <ProjectReference Include="..\PhotoStudio.Domain\PhotoStudio.Domain.csproj" />
   </ItemGroup>
 

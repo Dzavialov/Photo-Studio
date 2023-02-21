@@ -1,10 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PhotoStudio.Domain;
 using PhotoStudio.Domain.Entities;
-using System.Diagnostics;
-using System.Net;
 using Microsoft.EntityFrameworkCore;
-
+using AutoMapper;
+using FluentValidation;
 
 namespace PhotoStudioWebApp.Controllers
 {
@@ -13,27 +12,31 @@ namespace PhotoStudioWebApp.Controllers
     public class RoomController : Controller
     {
         private readonly AuthorizationDbContext _dbContext;
+        private readonly IMapper _mapper;
+        private readonly IValidator<RoomDto> _validator;
 
-        public RoomController(AuthorizationDbContext dbContext)
+        public RoomController(AuthorizationDbContext dbContext, IMapper mapper, IValidator<RoomDto> validator)
         {
             _dbContext = dbContext;
+            _mapper = mapper;
+            _validator = validator;
         }
 
         [Route("create-room")]
         [HttpPost]
-        public async Task<IActionResult> CreateRoomAsync(Room room)
+        public async Task<IActionResult> CreateRoomAsync(RoomDto room)
         {
-            try
+            var validationResult = _validator.Validate(room);
+            if (validationResult.IsValid)
             {
-                await _dbContext.Rooms.AddAsync(room);
+                var mappedRoom = _mapper.Map<RoomDto, Room>(room);
+                await _dbContext.Rooms.AddAsync(mappedRoom);
                 await _dbContext.SaveChangesAsync();
-                
-                return Created($"/get-room/{room.Id}", room);
+
+                return Created($"/get-room/{mappedRoom.Id}", mappedRoom);
             }
-            catch
-            {
-                return BadRequest();
-            }
+            
+            else return BadRequest();
         }
 
         [Route("get-room/{id}")]
@@ -67,11 +70,17 @@ namespace PhotoStudioWebApp.Controllers
 
         [Route("edit-room")]
         [HttpPut]
-        public async Task<IActionResult> EditRoomAsync(Room roomToUpdate)
+        public async Task<IActionResult> EditRoomAsync(RoomDto roomToUpdate)
         {
-            _dbContext.Rooms.Update(roomToUpdate);
-            await _dbContext.SaveChangesAsync();
-            return NoContent();
+            var validationResult = _validator.Validate(roomToUpdate);
+            if (validationResult.IsValid)
+            {
+                var mappedRoom = _mapper.Map<RoomDto, Room>(roomToUpdate);
+                _dbContext.Rooms.Update(mappedRoom);
+                await _dbContext.SaveChangesAsync();
+                return NoContent();
+            }
+            else return BadRequest();
         }
 
         [Route("{id}")]
