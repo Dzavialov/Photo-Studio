@@ -1,0 +1,43 @@
+<section class="vh-100" style="background-color: #eee;">
+  <div class="container h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-lg-12 col-xl-11">
+        <div class="card text-black" style="border-radius: 25px;">
+          <div class="card-body p-md-12">
+            <div class="row justify-content-center">
+              <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                <form class="mx-1 mx-md-4" (ngSubmit)="register()">
+                  <div class="form-floating mb-3">
+                    <input type="text" id="username" class="form-control" #UserName="ngModel" [(ngModel)]="registerDto.username" name="username" required/>
+                    <label class="form-label" for="username">Username</label>
+                    <p *ngIf="UserName.errors?.['required'] && UserName.touched" class="text-danger">Username is required.</p>
+                    <p class="text-danger" *ngIf="usernameError"> {{ usernameError }} </p>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <input type="email" id="email" class="form-control" #Email="ngModel" [(ngModel)]="registerDto.email" name="email" required email/>
+                    <label class="form-label" for="email">Email</label>
+                    <p *ngIf="Email.errors?.['required'] && Email.touched" class="text-danger">Email is required.</p>
+                    <p class="text-danger" *ngIf="emailError"> {{ emailError}} </p>
+                  </div>
+
+                  <div class="form-floating mb-3">
+                    <input type="password" id="password" class="form-control" #Password="ngModel" [(ngModel)]="registerDto.password" name="password" required/>
+                    <label class="form-label" for="password">Password</label>
+                    <p *ngIf="Password.errors?.['required'] && Password.touched" class="text-danger">Password is required.</p>
+                    <p class="text-danger" *ngIf="passwordError">{{ passwordError }}</p>
+                  </div>
+
+                  <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+                    <button type="submit" class="btn btn-primary btn-lg">Register</button>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

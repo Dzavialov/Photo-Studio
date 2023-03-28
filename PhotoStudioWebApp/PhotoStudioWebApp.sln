@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudio.Domain", "Photo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhotoStudio.Application", "PhotoStudio.Application\PhotoStudio.Application.csproj", "{DD6DC19C-5EEF-4117-B4B6-50CED30D4128}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhotoStudio.Infrastructure", "PhotoStudio.Infrastructure\PhotoStudio.Infrastructure.csproj", "{AAB6EBB0-EF6F-4DEE-8189-D3D35E803C0F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{DD6DC19C-5EEF-4117-B4B6-50CED30D4128}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD6DC19C-5EEF-4117-B4B6-50CED30D4128}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD6DC19C-5EEF-4117-B4B6-50CED30D4128}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AAB6EBB0-EF6F-4DEE-8189-D3D35E803C0F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AAB6EBB0-EF6F-4DEE-8189-D3D35E803C0F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AAB6EBB0-EF6F-4DEE-8189-D3D35E803C0F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AAB6EBB0-EF6F-4DEE-8189-D3D35E803C0F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

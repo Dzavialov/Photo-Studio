@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using PhotoStudio.Application.DTOs;
+using PhotoStudio.Core;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -14,6 +15,7 @@ namespace PhotoStudioWebApp.Controllers
     public class AuthenticateController : Controller
     {
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IConfiguration _configuration;
 
         public AuthenticateController(
@@ -22,6 +24,7 @@ namespace PhotoStudioWebApp.Controllers
             IConfiguration configuration)
         {
             _userManager = userManager;
+            _roleManager = roleManager;
             _configuration = configuration;
         }
 
@@ -38,6 +41,7 @@ namespace PhotoStudioWebApp.Controllers
                 var authClaims = new List<Claim>
                 {
                     new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(JwtRegisteredClaimNames.Sub, user.Id),
                     new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 };
 
@@ -59,6 +63,7 @@ namespace PhotoStudioWebApp.Controllers
 
         [HttpPost]
         [Route("register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterDto model)
         {
             var userExists = await _userManager.FindByNameAsync(model.Username);
@@ -74,6 +79,20 @@ namespace PhotoStudioWebApp.Controllers
             var result = await _userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError);
+
+            // Create the "User" role if it does not exist
+            if (!await _roleManager.RoleExistsAsync(UserRoles.User))
+            {
+                var role = new IdentityRole { Name = UserRoles.User };
+                var createRoleResult = await _roleManager.CreateAsync(role);
+                if (!createRoleResult.Succeeded)
+                {
+                    return StatusCode(StatusCodes.Status500InternalServerError);
+                }
+            }
+
+            // Assign the "User" role to the newly created user
+            await _userManager.AddToRoleAsync(user, UserRoles.User);
 
             return Ok();
         }

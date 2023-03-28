@@ -151,13 +151,13 @@ namespace PhotoStudio.Domain.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f8cfb855-13ba-4485-a9ba-a2e115665ba2",
+                            ConcurrencyStamp = "f627e4d3-4bb8-4b84-ab69-4039a893eb41",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@admin.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAIAAYagAAAAEO0fUnA1n5Woo5y9Y4MRFFlmsXkmzFSFpEm6n6IXS6c3EClsTkWW+BJjFahCtBYxvg==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL/OUkAWy+0TxJmMe7iaobcL3igPIQtYUc/fFNJD8HvH/rKI1FlpQI82GeBWFCQIaw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -291,10 +291,6 @@ namespace PhotoStudio.Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -318,10 +314,6 @@ namespace PhotoStudio.Domain.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Image")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -329,6 +321,30 @@ namespace PhotoStudio.Domain.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Rooms");
+                });
+
+            modelBuilder.Entity("PhotoStudio.Domain.Entities.RoomImage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ImageName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoomId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoomId");
+
+                    b.ToTable("RoomImages");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -401,9 +417,22 @@ namespace PhotoStudio.Domain.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("PhotoStudio.Domain.Entities.RoomImage", b =>
+                {
+                    b.HasOne("PhotoStudio.Domain.Entities.Room", "Room")
+                        .WithMany("Images")
+                        .HasForeignKey("RoomId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Room");
+                });
+
             modelBuilder.Entity("PhotoStudio.Domain.Entities.Room", b =>
                 {
                     b.Navigation("Booking");
+
+                    b.Navigation("Images");
                 });
 #pragma warning restore 612, 618
         }

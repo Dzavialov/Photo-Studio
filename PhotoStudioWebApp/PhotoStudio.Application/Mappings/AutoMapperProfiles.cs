@@ -11,6 +11,7 @@ namespace PhotoStudio.Application.Mappings
             CreateMap<BookingDto, Booking>();
             CreateMap<RoomDto, Room>();
             CreateMap<EquipmentItemDto, EquipmentItem>();
+            CreateMap<RoomImageDto, RoomImage>();
         }
     }
 }

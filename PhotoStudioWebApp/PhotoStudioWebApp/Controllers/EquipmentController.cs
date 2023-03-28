@@ -27,16 +27,14 @@ namespace PhotoStudioWebApp.Controllers
         public async Task<IActionResult> CreateItemAsync(EquipmentItemDto item)
         {
             var validationResult = _validator.Validate(item);
-            if (validationResult.IsValid)
+            if (!validationResult.IsValid)
             {
-                var mappedItem = _mapper.Map<EquipmentItemDto, EquipmentItem>(item);
-                await _dbContext.EquipmentItems.AddAsync(mappedItem);
-                await _dbContext.SaveChangesAsync();
-
-                return Created($"/get-item/{mappedItem.Id}", mappedItem);
+                return BadRequest();
             }
-            
-            return BadRequest();
+            var mappedItem = _mapper.Map<EquipmentItemDto, EquipmentItem>(item);
+            await _dbContext.EquipmentItems.AddAsync(mappedItem);
+            await _dbContext.SaveChangesAsync();
+            return Created($"/get-item/{mappedItem.Id}", mappedItem);
         }
 
         [Route("get-item/{id}")]
@@ -73,15 +71,14 @@ namespace PhotoStudioWebApp.Controllers
         public async Task<IActionResult> EditItemAsync(EquipmentItemDto itemToUpdate)
         {
             var validationResult = _validator.Validate(itemToUpdate);
-            if (validationResult.IsValid)
+            if (!validationResult.IsValid)
             {
-                var mappedItem = _mapper.Map<EquipmentItemDto, EquipmentItem>(itemToUpdate);
-                _dbContext.EquipmentItems.Update(mappedItem);
-                await _dbContext.SaveChangesAsync();
-                return NoContent();
+                return BadRequest();
             }
-
-            else return BadRequest();
+            var mappedItem = _mapper.Map<EquipmentItemDto, EquipmentItem>(itemToUpdate);
+            _dbContext.EquipmentItems.Update(mappedItem);
+            await _dbContext.SaveChangesAsync();
+            return NoContent();
         }
 
         [Route("{id}")]

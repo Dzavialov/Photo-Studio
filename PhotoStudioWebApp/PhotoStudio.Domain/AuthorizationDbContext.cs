@@ -11,6 +11,7 @@ namespace PhotoStudio.Domain
         public DbSet<EquipmentItem> EquipmentItems { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Booking> Bookings { get; set; }
+        public DbSet<RoomImage> RoomImages { get; set; }
         public AuthorizationDbContext(DbContextOptions<AuthorizationDbContext> options) : base(options)
         {
 

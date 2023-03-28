@@ -1,10 +1,5 @@
 ﻿using FluentValidation;
 using PhotoStudio.Domain.Entities;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PhotoStudio.Application.Validation
 {
@@ -17,9 +12,9 @@ namespace PhotoStudio.Application.Validation
                 .WithMessage("Name is required.")
                 .Length(1, 50)
                 .WithMessage("Name length should be greater than 1 and less than 50");
-            RuleFor(r => r.Image)
-                .NotEmpty()
-                .WithMessage("Image is required.");
+            //RuleFor(r => r.Image)
+            //    .NotEmpty()
+            //    .WithMessage("Image is required.");
             RuleFor(r => r.Description)
                 .NotEmpty()
                 .WithMessage("Description is required.")

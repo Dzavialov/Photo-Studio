@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Http;
+using PhotoStudio.Application.DTOs;
+using System.ComponentModel.DataAnnotations;
 
 namespace PhotoStudio.Domain.Entities
 {
@@ -6,8 +8,9 @@ namespace PhotoStudio.Domain.Entities
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
-        public string Image { get; set; }
         public string Description { get; set; }
         public string AdditionalInformation { get; set; }
+        public ICollection<Booking>? Booking { get; set; }
+        public ICollection<RoomImageDto>? Images { get; set; }
     }
 }

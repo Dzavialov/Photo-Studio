@@ -2,7 +2,6 @@ using FluentValidation;
 using FluentValidation.AspNetCore;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PhotoStudio.Application.DTOs;
@@ -11,6 +10,7 @@ using PhotoStudio.Application.Validation;
 using PhotoStudio.Domain;
 using PhotoStudio.Domain.Entities;
 using System.Text;
+using System.Text.Json.Serialization;
 
 namespace PhotoStudioWebApp
 {
@@ -26,6 +26,7 @@ namespace PhotoStudioWebApp
             builder.Services.AddControllersWithViews();
             builder.Services.AddAutoMapper(typeof(AutoMapperProfiles).Assembly);
             builder.Services.AddFluentValidationClientsideAdapters();
+            
 
             // For Entity Framework
             builder.Services.AddDbContext<AuthorizationDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ConnStr")));
@@ -34,8 +35,6 @@ namespace PhotoStudioWebApp
             builder.Services.AddScoped<IValidator<RoomDto>, RoomDtoValidation>();
             builder.Services.AddScoped<IValidator<BookingDto>, BookingDtoValidation>();
             builder.Services.AddScoped<IValidator<EquipmentItemDto>, EquipmentItemDtoValidation>();
-            //builder.Services.AddScoped<IValidator<RegisterDto>, RegisterDtoValidation>();
-            //builder.Services.AddScoped<IValidator<LoginDto>, LoginDtoValidation>();
 
             // For Identity
             builder.Services.AddIdentity<IdentityUser, IdentityRole>()
@@ -71,10 +70,12 @@ namespace PhotoStudioWebApp
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
 
-            
-
+            builder.Services.AddControllers()
+                .AddJsonOptions(x => x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 
             var app = builder.Build();
+
+            string imageFolder = builder.Configuration["FileStoragePath"];
 
             // Configure the HTTP request pipeline.
             if (!app.Environment.IsDevelopment())
@@ -82,6 +83,12 @@ namespace PhotoStudioWebApp
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+            // Enable CORS
+            app.UseCors(options => options
+                        .AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
 
             // Authentication & Authorization
             app.UseAuthentication();
@@ -95,7 +102,6 @@ namespace PhotoStudioWebApp
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
-
 
             app.MapControllerRoute(
                 name: "default",

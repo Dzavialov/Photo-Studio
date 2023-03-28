@@ -1,8 +1,8 @@
-﻿//namespace PhotoStudio.Application.DTOs
-//{
-//    public class LoginDto
-//    {
-//        public string? Username { get; set; }
-//        public string? Password { get; set; }
-//    }
-//}
+﻿namespace PhotoStudio.Application.DTOs
+{
+    public class LoginDto
+    {
+        public string? Username { get; set; }
+        public string? Password { get; set; }
+    }
+}

@@ -1,0 +1,17 @@
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\bin\Debug\net7.0\PhotoStudio.Infrastructure.deps.json
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\bin\Debug\net7.0\PhotoStudio.Infrastructure.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\bin\Debug\net7.0\PhotoStudio.Infrastructure.pdb
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\bin\Debug\net7.0\PhotoStudio.Application.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\bin\Debug\net7.0\PhotoStudio.Domain.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\bin\Debug\net7.0\PhotoStudio.Application.pdb
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\bin\Debug\net7.0\PhotoStudio.Domain.pdb
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\obj\Debug\net7.0\PhotoStudio.Infrastructure.csproj.AssemblyReference.cache
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\obj\Debug\net7.0\PhotoStudio.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\obj\Debug\net7.0\PhotoStudio.Infrastructure.AssemblyInfoInputs.cache
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\obj\Debug\net7.0\PhotoStudio.Infrastructure.AssemblyInfo.cs
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\obj\Debug\net7.0\PhotoStudio.Infrastructure.csproj.CoreCompileInputs.cache
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\obj\Debug\net7.0\PhotoStudio.Infrastructure.csproj.CopyComplete
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\obj\Debug\net7.0\PhotoStudio.Infrastructure.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\obj\Debug\net7.0\refint\PhotoStudio.Infrastructure.dll
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\obj\Debug\net7.0\PhotoStudio.Infrastructure.pdb
+C:\CSharp\Photo-Studio\PhotoStudioWebApp\PhotoStudio.Infrastructure\obj\Debug\net7.0\ref\PhotoStudio.Infrastructure.dll
