@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { LoginDto } from '../auth/auth.dto';
+import { LoginDto } from '../models/auth.dto';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 

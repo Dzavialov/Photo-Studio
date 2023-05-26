@@ -30,7 +30,7 @@ namespace PhotoStudioWebApp.Controllers
         [Authorize(Roles = UserRoles.User)]
         [Route("create-booking")]
         [HttpPost]
-        public async Task<IActionResult> CreateBookingAsync(BookingDto booking)
+        public async Task<IActionResult> CreateBookingAsync([FromForm]BookingDto booking)
         {
             IList<Booking> bookingList = await _dbContext.Bookings.ToListAsync();
             foreach(var x in bookingList)
@@ -50,19 +50,17 @@ namespace PhotoStudioWebApp.Controllers
 
             
             var mappedBooking = _mapper.Map<BookingDto, Booking>(booking);
-            var currentUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-
-            
+            var currentUserId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;    
 
             mappedBooking.UserId = Guid.Parse(currentUserId).ToString();
             await _dbContext.Bookings.AddAsync(mappedBooking);
             await _dbContext.SaveChangesAsync();
 
-            return Created($"/get-booking/{mappedBooking.Id}", mappedBooking);
+            return Ok(mappedBooking);
         }
 
         [Authorize]
-        [Route("get-booking/{id}")]
+        [Route("{id}")]
         [HttpGet]
         public async Task<IActionResult> GetBookingByIdAsync(Guid id)
         {
@@ -77,7 +75,7 @@ namespace PhotoStudioWebApp.Controllers
             }
         }
 
-        [Authorize(Roles = UserRoles.Admin)]
+        [Authorize(Roles = UserRoles.User)]
         [Route("get-bookings")]
         [HttpGet]
         public async Task<IActionResult> GetAllBookingsAsync()

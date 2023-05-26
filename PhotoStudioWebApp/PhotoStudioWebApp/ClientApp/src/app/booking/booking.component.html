@@ -1,0 +1,19 @@
+<h1>BOOOOOKING!!!!!!!!!!!!!!!</h1>
+<form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+  <div class="form-group">
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" formControlName="startDate" required>
+    <p class="text-danger" *ngIf="bookFromError">{{ bookFromError }}</p>
+  </div>
+  <div class="form-group">
+    <label for="startTime">Start Time:</label>
+    <input type="time" id="startTime" formControlName="startTime" required>
+    <p class="text-danger" *ngIf="bookFromError">{{ bookFromError }}</p>
+  </div>
+  <div class="form-group">
+    <label for="endTime">End Time:</label>
+    <input type="time" id="endTime" formControlName="endTime" required>
+    <p class="text-danger" *ngIf="bookToError">{{ bookToError }}</p>
+  </div>
+  <button type="submit" class="btn btn-primary">Book</button>
+</form>

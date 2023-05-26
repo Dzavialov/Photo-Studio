@@ -1,9 +1,13 @@
 ﻿using AutoMapper;
 using FluentValidation;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using PhotoStudio.Application.DTOs;
+using PhotoStudio.Core;
 using PhotoStudio.Domain;
 using PhotoStudio.Domain.Entities;
+using System.Data;
 
 namespace PhotoStudioWebApp.Controllers
 {
@@ -14,30 +18,53 @@ namespace PhotoStudioWebApp.Controllers
         private readonly AuthorizationDbContext _dbContext;
         private readonly IMapper _mapper;
         private readonly IValidator<EquipmentItemDto> _validator;
+        private readonly IConfiguration _configuration;
 
-        public EquipmentController(AuthorizationDbContext dbContext, IMapper mapper, IValidator<EquipmentItemDto> validator)
+        public EquipmentController(AuthorizationDbContext dbContext, IMapper mapper, IValidator<EquipmentItemDto> validator, IConfiguration configuration)
         {
             _dbContext = dbContext;
             _mapper = mapper;
             _validator = validator;
+            _configuration = configuration;
         }
 
+        [Authorize(Roles = UserRoles.Admin)]
         [Route("create-item")]
         [HttpPost]
-        public async Task<IActionResult> CreateItemAsync(EquipmentItemDto item)
+        public async Task<IActionResult> CreateItemAsync([FromForm]EquipmentItemDto item, [FromForm] IFormFile image)
         {
             var validationResult = _validator.Validate(item);
             if (!validationResult.IsValid)
             {
                 return BadRequest();
             }
+            
+
+            if (image.FileName == null || image.FileName.Length == 0)
+            {
+                return Content("Files not selected");
+            }
+
+            string fileName = Guid.NewGuid().ToString() + Path.GetExtension(image.FileName);
+
+            string filePath = Path.Combine(_configuration["FileStoragePath"], "EquipmentItems", fileName);
+            using (FileStream fs = new FileStream(filePath, FileMode.Create))
+            {
+                await image.CopyToAsync(fs);
+                fs.Close();
+            }
+
+            item.ImageName = fileName;
+            item.ImagePath = filePath;
+
             var mappedItem = _mapper.Map<EquipmentItemDto, EquipmentItem>(item);
             await _dbContext.EquipmentItems.AddAsync(mappedItem);
             await _dbContext.SaveChangesAsync();
-            return Created($"/get-item/{mappedItem.Id}", mappedItem);
+
+            return Ok(mappedItem);
         }
 
-        [Route("get-item/{id}")]
+        [Route("{id}")]
         [HttpGet]
         public async Task<IActionResult> GetItemByIdAsync(Guid id)
         {
@@ -66,6 +93,7 @@ namespace PhotoStudioWebApp.Controllers
             return Ok(items);
         }
 
+        [Authorize(Roles = UserRoles.Admin)]
         [Route("edit-item")]
         [HttpPut]
         public async Task<IActionResult> EditItemAsync(EquipmentItemDto itemToUpdate)
@@ -81,6 +109,7 @@ namespace PhotoStudioWebApp.Controllers
             return NoContent();
         }
 
+        [Authorize(Roles = UserRoles.Admin)]
         [Route("{id}")]
         [HttpDelete]
         public async Task<IActionResult> DeleteItemAsync(Guid id)

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RegisterDto } from './auth.dto';
+import { RegisterDto } from '../models/auth.dto';
 import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
@@ -49,5 +49,15 @@ export class AuthService {
   logout(){
     localStorage.removeItem('token');
     this.isLoggedInSubject.next(false);
+  }
+
+  getCurrentUserId(): string | null {
+    const token = localStorage.getItem('token');
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      console.log('token = ', decodedToken);
+      return decodedToken.sub;
+    }
+    return null;
   }
 }

@@ -10,7 +10,7 @@ namespace PhotoStudio.Domain.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string AdditionalInformation { get; set; }
-        public ICollection<Booking>? Booking { get; set; }
+        public ICollection<BookingDto>? Booking { get; set; }
         public ICollection<RoomImageDto>? Images { get; set; }
     }
 }

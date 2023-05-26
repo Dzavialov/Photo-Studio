@@ -151,13 +151,13 @@ namespace PhotoStudio.Domain.Migrations
                         {
                             Id = "a18be9c0-aa65-4af8-bd17-00bd9344e575",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "f627e4d3-4bb8-4b84-ab69-4039a893eb41",
+                            ConcurrencyStamp = "00f8aacc-372c-4d0b-af31-4892c55cebb6",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "admin@admin.com",
                             NormalizedUserName = "admin",
-                            PasswordHash = "AQAAAAIAAYagAAAAEL/OUkAWy+0TxJmMe7iaobcL3igPIQtYUc/fFNJD8HvH/rKI1FlpQI82GeBWFCQIaw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBbKc3SZa7iRsYlxTxWnY2kiOxtb5/vGsJAlf/TLkVDQW0QF8Sra/ltQ+0L/5+m5hw==",
                             PhoneNumberConfirmed = false,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -289,6 +289,12 @@ namespace PhotoStudio.Domain.Migrations
 
                     b.Property<string>("Description")
                         .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImageName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ImagePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")

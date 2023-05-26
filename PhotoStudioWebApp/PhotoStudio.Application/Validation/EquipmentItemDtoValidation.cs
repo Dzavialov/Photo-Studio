@@ -17,6 +17,12 @@ namespace PhotoStudio.Application.Validation
                 .WithMessage("Description is required.")
                 .Length(10, 5000)
                 .WithMessage("Description should be greater than 10 and less than 5000");
+            RuleFor(i => i.ImagePath)
+                .NotEmpty()
+                .WithMessage("Path cannot be empty.");
+            RuleFor(i => i.ImageName)
+                .NotEmpty()
+                .WithMessage("Name cannot be empty.");
         }
     }
 }

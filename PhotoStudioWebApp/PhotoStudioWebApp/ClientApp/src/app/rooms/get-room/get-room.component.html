@@ -1,0 +1,21 @@
+<div>
+  <div class="row">
+    <div class="col-md-10">
+      <h1 class="mt-4 fw-bold">{{ room.name }}</h1>
+    </div>
+    <div class="col-md-2">
+      <button class="mt-4" (click)="onButtonClicked()">Button</button>
+    </div>
+  </div>
+  <h2 class="fw-light text-divider"><span>Про кімнату</span></h2>
+  <p>{{room.description}}</p>
+  <h2 class="fw-light text-divider"><span>Додаткова інформація</span></h2>
+  <p *ngFor="let info of room.additionalInformation.split('.')">{{ info }}<br></p>
+</div>
+<div class="row">
+  <div class="col-md-4 col-xs-6 thumb" *ngFor="let image of imagePath">
+      <a href="image" class="fancybox" rel="ligthbox">
+          <img  [src]="image" class="zoom i-img"  alt="">
+      </a>
+  </div>
+</div>

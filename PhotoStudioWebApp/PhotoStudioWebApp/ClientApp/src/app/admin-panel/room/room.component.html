@@ -1,0 +1,22 @@
+<h1>room manager</h1>
+<p>Welcome to room manager.</p>
+<button (click)="newRoomBtn()">Add new room</button>
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let room of rooms">
+      <td>{{room.id}}</td>
+      <td>{{room.name}}</td>
+      <td>
+        <button (click)="onEdit(room)">Edit</button>
+        <button (click)="onDelete(room)">Delete</button>
+      </td>
+    </tr>
+  </tbody>
+</table>

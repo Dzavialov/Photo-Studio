@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { LoginDto, RegisterDto } from '../auth/auth.dto';
+import { RegisterDto } from '../models/auth.dto';
 import { AuthService } from '../auth/auth.service';
 import { Router } from '@angular/router';
 
@@ -18,8 +18,8 @@ export class RegisterComponent {
   constructor(@Inject(AuthService) private authService: AuthService, private router: Router) { }
 
   register(): void {
-    this.usernameError = '';
     this.validationResult = true;
+
     if (!this.validatePassword(this.registerDto.password)){
       this.passwordError = 'Passwords must have at least one non alphanumeric character, one uppercase letter, and one digit.';
       console.log('ERROR');
@@ -28,6 +28,12 @@ export class RegisterComponent {
 
     if (!this.validateEmail(this.registerDto.email)) {
       this.emailError = 'Invalid email address format.';
+      console.log('ERROR');
+      this.validationResult = false;
+    }
+
+    if (!this.validateUsername(this.registerDto.username)){
+      this.usernameError = 'Username is invalid, can only contain letters or digits.';
       console.log('ERROR');
       this.validationResult = false;
     }
@@ -41,9 +47,6 @@ export class RegisterComponent {
         },
         error: err => {
           console.log(err); // handle error from backend
-          if (err.status === 500) {
-            this.usernameError = 'Username already exists.';
-          }
         }
       });
     }
@@ -59,5 +62,11 @@ export class RegisterComponent {
     this.emailError = '';
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailRegex.test(email);
+  }
+
+  validateUsername(username: string): boolean {
+    this.usernameError = '';
+    const regex = /^[a-zA-Z0-9]+$/;
+    return regex.test(username);
   }
 }
