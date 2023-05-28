@@ -1,6 +1,5 @@
-<h1>room manager</h1>
-<p>Welcome to room manager.</p>
-<button (click)="newRoomBtn()">Add new room</button>
+<h1>Редактор кімнат</h1>
+<button class="btn btn-primary" (click)="newRoomBtn()">Додати кімнату</button>
 <table>
   <thead>
     <tr>
@@ -14,8 +13,8 @@
       <td>{{room.id}}</td>
       <td>{{room.name}}</td>
       <td>
-        <button (click)="onEdit(room)">Edit</button>
-        <button (click)="onDelete(room)">Delete</button>
+        <button class="btn btn-primary ms-3" (click)="onEdit(room)">Редагувати</button>
+        <button class="btn btn-primary ms-3" (click)="onDelete(room)">Видалити</button>
       </td>
     </tr>
   </tbody>

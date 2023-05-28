@@ -28,7 +28,7 @@
                     <p *ngIf="Password.errors?.['required'] && Password.touched" class="text-danger">Password is required.</p>
                     <p class="text-danger" *ngIf="passwordError">{{ passwordError }}</p>
                   </div>
-
+                  <p>Вже маєте акаунт? <a [routerLink]="['/login']">Увійти</a></p>
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                     <button type="submit" class="btn btn-primary btn-lg">Register</button>
                   </div>

@@ -8,8 +8,6 @@ import { RouterModule } from '@angular/router';
 import { AppComponent } from './app.component';
 import { NavMenuComponent } from './nav-menu/nav-menu.component';
 import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
 import { AuthService } from './auth/auth.service';
 import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
@@ -30,8 +28,6 @@ import { BookingComponent } from './booking/booking.component';
     AppComponent,
     NavMenuComponent,
     HomeComponent,
-    CounterComponent,
-    FetchDataComponent,
     RegisterComponent,
     LoginComponent,
     AdminPanelComponent,
@@ -54,8 +50,6 @@ import { BookingComponent } from './booking/booking.component';
       { path: 'admin-panel/room', component: RoomComponent, canActivate: [AdminGuard] },
       { path: 'admin-panel/room/room-create', component: RoomCreateComponent, canActivate: [AdminGuard] },
       { path: 'admin-panel/room/room-edit/:id', component: RoomEditComponent, canActivate: [AdminGuard] },
-      { path: 'counter', component: CounterComponent },
-      { path: 'fetch-data', component: FetchDataComponent },
       { path: 'register', component: RegisterComponent },
       { path: 'login', component: LoginComponent },
       { path: 'home', component: HomeComponent },

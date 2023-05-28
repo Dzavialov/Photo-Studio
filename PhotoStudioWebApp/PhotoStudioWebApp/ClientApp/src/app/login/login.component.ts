@@ -26,7 +26,7 @@ export class LoginComponent {
         }
         else{
           console.log('not admin');
-          this.router.navigateByUrl('/counter'); // navigate to dashboard page on success
+          this.router.navigateByUrl('/home'); // navigate to dashboard page on success
         }
         this.authService.isLoggedInSubject.next(true);
       },
